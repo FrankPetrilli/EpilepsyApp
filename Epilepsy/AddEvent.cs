@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using System.Collections;
 
 namespace Epilepsy
 {
@@ -27,10 +28,26 @@ namespace Epilepsy
 
 		private DataManager manager;
 
+		private IList<Symptom> my_symptoms;
+
+		private ArrayAdapter available_adapter;
+		private ListView available_symptoms;
+
 		protected override void OnCreate (Bundle bundle)
 		{
 			//manager = new DataManager ();
 			manager = SharedObjects.manager;
+
+
+
+			// DEBUG
+			foreach (Symptom s in manager.GetSymptoms()) {
+				System.Diagnostics.Debug.WriteLine (s);
+			}
+
+
+
+
 			// Hide keyboard:
 			Window.SetSoftInputMode (SoftInput.StateAlwaysHidden);
 			date = DateTime.Today;
@@ -63,6 +80,43 @@ namespace Epilepsy
 			CheckBox menstruation = FindViewById<CheckBox> (Resource.Id.checkBox4);
 			CheckBox meds_taken = FindViewById<CheckBox> (Resource.Id.checkBox5);
 
+			// Symptom list
+			my_symptoms = new List<Symptom> ();
+
+			available_symptoms = FindViewById<ListView> (Resource.Id.availableSymptomsAdd);
+			ListView noted_symptoms = FindViewById<ListView> (Resource.Id.notedSymptoms);
+
+			ArrayAdapter noted_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, my_symptoms);
+			noted_symptoms.Adapter = noted_adapter;
+
+			available_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, (IList<Symptom>)manager.GetSymptoms ());
+			available_symptoms.Adapter = available_adapter;
+
+			available_symptoms.ItemClick += delegate(object sender, AdapterView.ItemClickEventArgs e) {
+				my_symptoms.Add(manager.GetSymptoms()[e.Position]);
+				noted_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, my_symptoms);
+				noted_symptoms.Adapter = noted_adapter;
+				noted_adapter.NotifyDataSetChanged();
+			};
+
+			noted_symptoms.ItemLongClick += delegate(object sender, AdapterView.ItemLongClickEventArgs e) {
+				AlertDialog.Builder builder = new AlertDialog.Builder (this);
+				builder.SetTitle ("Delete observed symptom?");
+				builder.SetMessage ("Are you sure you want to delete this?");
+				builder.SetPositiveButton("OK", delegate {
+					// They confirmed...
+					my_symptoms.Remove(my_symptoms[e.Position]);
+					noted_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, my_symptoms);
+					noted_symptoms.Adapter = noted_adapter;
+					noted_adapter.NotifyDataSetChanged();
+				});
+				builder.SetNegativeButton("Cancel", delegate { return; });
+				var dialog = builder.Create();
+				dialog.Show ();
+			};
+
+
+
 			pick_date.Click += delegate {
 				ShowDialog (DATE_DIALOG_ID);
 			};
@@ -93,12 +147,28 @@ namespace Epilepsy
 				new_event.aura_felt = aura_felt.Checked;
 				new_event.menstruation = menstruation.Checked;
 				new_event.meds_taken = meds_taken.Checked;
+
 				manager.AddEvent(new_event);
+
+				//int row = manager.GetID(new_event); This would get the id from the DB.
+				foreach (Symptom symptom in my_symptoms)
+				{
+					manager.AddSymptomOccurrence(new SymptomOccurrence(symptom.id, new_event.id));
+				}
 				Toast.MakeText(this, "Event added!", ToastLength.Long);
 				Finish(); // Close this out.
 			};
 		}
-
+		/*
+		protected override void OnResume()
+		{
+			base.OnResume ();
+			List<Symptom> available_symptom_list = manager.GetSymptoms ();
+			available_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, available_symptom_list);
+			available_symptoms.Adapter = available_adapter;
+			available_adapter.NotifyDataSetChanged ();
+		}
+		*/
 		void OnDateSet (object sender, DatePickerDialog.DateSetEventArgs e)
 		{
 			this.date = e.Date;

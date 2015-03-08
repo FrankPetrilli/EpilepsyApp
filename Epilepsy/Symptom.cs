@@ -1,23 +1,31 @@
 ﻿using System;
+using SQLite;
 
 namespace Epilepsy
 {
 	public class Symptom
 	{
-		public string short_name;
-		public string description;
-		public int intensity;
+		[PrimaryKey, AutoIncrement]
+		public int id { get; set; }
+		public string short_name { get; set; }
+		public string description { get; set; }
 
-		public Symptom (string short_name, string description, int intensity)
+		public Symptom()
 		{
+			this.id = new Random ().Next (Int32.MaxValue);
+		}
+
+		public Symptom (string short_name, string description)
+		{
+			this.id = new Random ().Next (Int32.MaxValue);
 			this.short_name = short_name;
 			this.description = description;
-			this.intensity = intensity;
 		}
 
 		public override string ToString ()
 		{
-			return "[Symptom] " + short_name + ". Intensity: " + intensity;
+			//return short_name + ": " + description;
+			return short_name;
 		}
 	}
 }

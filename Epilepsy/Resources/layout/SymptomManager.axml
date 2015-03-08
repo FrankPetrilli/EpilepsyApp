@@ -3,34 +3,31 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <Button
-        android:text="Add Event"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addButton"
-        android:minHeight="125dp" />
-    <Button
-        android:id="@+id/listButton"
+        android:id="@+id/shortName"
+        android:hint="Short Name" />
+    <MultiAutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Event List"
-        android:minHeight="125dp" />
+        android:id="@+id/symptomDescription"
+        android:hint="Description" />
     <Button
-        android:id="@+id/symptomButton"
+        android:text="Add Symptom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Symptom Manager"
-        android:minHeight="125dp" />
+        android:id="@+id/symptomManagerAddSymptom" />
     <TextView
-        android:text="Frank Petrilli"
+        android:text="List:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />
-    <TextView
-        android:text="Alpha version, release 1"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:layout_height="match_parent"
+        android:id="@+id/listView1" />
 </LinearLayout>

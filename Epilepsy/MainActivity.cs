@@ -26,7 +26,7 @@ namespace Epilepsy
 
 			// Get our button from the layout resource,
 			// and attach an event to it
-			Button list_button = FindViewById<Button> (Resource.Id.myButton);
+			Button list_button = FindViewById<Button> (Resource.Id.listButton);
 
 			list_button.Click += delegate {
 				StartActivity(typeof(EventList));
@@ -36,6 +36,12 @@ namespace Epilepsy
 
 			add_button.Click += delegate {
 				StartActivity(typeof(AddEvent));
+			};
+
+			Button symptom_button = FindViewById<Button> (Resource.Id.symptomButton);
+
+			symptom_button.Click += delegate {
+				StartActivity(typeof(SymptomManager));
 			};
 		}
 	}

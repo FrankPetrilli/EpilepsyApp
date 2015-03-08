@@ -62,68 +62,104 @@ namespace Epilepsy
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050012
-			public const int addButton = 2131034130;
+			// aapt resource value: 0x7f050019
+			public const int addButton = 2131034137;
 			
-			// aapt resource value: 0x7f05000b
-			public const int checkBox1 = 2131034123;
-			
-			// aapt resource value: 0x7f05000c
-			public const int checkBox2 = 2131034124;
-			
-			// aapt resource value: 0x7f05000d
-			public const int checkBox3 = 2131034125;
+			// aapt resource value: 0x7f050016
+			public const int availableSymptomsAdd = 2131034134;
 			
 			// aapt resource value: 0x7f05000e
-			public const int checkBox4 = 2131034126;
+			public const int checkBox1 = 2131034126;
 			
 			// aapt resource value: 0x7f05000f
-			public const int checkBox5 = 2131034127;
-			
-			// aapt resource value: 0x7f050005
-			public const int dateText = 2131034117;
-			
-			// aapt resource value: 0x7f05000a
-			public const int descriptionBox = 2131034122;
+			public const int checkBox2 = 2131034127;
 			
 			// aapt resource value: 0x7f050010
-			public const int event_add = 2131034128;
+			public const int checkBox3 = 2131034128;
 			
-			// aapt resource value: 0x7f050003
-			public const int intensityNumber = 2131034115;
+			// aapt resource value: 0x7f050011
+			public const int checkBox4 = 2131034129;
+			
+			// aapt resource value: 0x7f050012
+			public const int checkBox5 = 2131034130;
+			
+			// aapt resource value: 0x7f050007
+			public const int dateLayout = 2131034119;
+			
+			// aapt resource value: 0x7f050008
+			public const int dateText = 2131034120;
+			
+			// aapt resource value: 0x7f05000d
+			public const int descriptionBox = 2131034125;
+			
+			// aapt resource value: 0x7f050013
+			public const int event_add = 2131034131;
+			
+			// aapt resource value: 0x7f050005
+			public const int intensityNumber = 2131034117;
 			
 			// aapt resource value: 0x7f050002
-			public const int linearLayout1 = 2131034114;
+			public const int linearInScroll = 2131034114;
+			
+			// aapt resource value: 0x7f050004
+			public const int linearLayout1 = 2131034116;
 			
 			// aapt resource value: 0x7f050000
 			public const int linearLayout3 = 2131034112;
 			
+			// aapt resource value: 0x7f05001a
+			public const int listButton = 2131034138;
+			
+			// aapt resource value: 0x7f050020
+			public const int listView1 = 2131034144;
+			
+			// aapt resource value: 0x7f05000c
+			public const int locationText = 2131034124;
+			
+			// aapt resource value: 0x7f050018
+			public const int my_events = 2131034136;
+			
+			// aapt resource value: 0x7f05001c
+			public const int notedSymptomView = 2131034140;
+			
+			// aapt resource value: 0x7f050017
+			public const int notedSymptoms = 2131034135;
+			
 			// aapt resource value: 0x7f050009
-			public const int locationText = 2131034121;
+			public const int pickDateButton = 2131034121;
 			
-			// aapt resource value: 0x7f050013
-			public const int myButton = 2131034131;
-			
-			// aapt resource value: 0x7f050011
-			public const int my_events = 2131034129;
-			
-			// aapt resource value: 0x7f050007
-			public const int pickDateButton = 2131034119;
-			
-			// aapt resource value: 0x7f050008
-			public const int pickTimeButton = 2131034120;
-			
-			// aapt resource value: 0x7f050004
-			public const int seekBar1 = 2131034116;
+			// aapt resource value: 0x7f05000b
+			public const int pickTimeButton = 2131034123;
 			
 			// aapt resource value: 0x7f050001
-			public const int textView1 = 2131034113;
-			
-			// aapt resource value: 0x7f050014
-			public const int textView2 = 2131034132;
+			public const int scrollView1 = 2131034113;
 			
 			// aapt resource value: 0x7f050006
-			public const int timeText = 2131034118;
+			public const int seekBar1 = 2131034118;
+			
+			// aapt resource value: 0x7f05001d
+			public const int shortName = 2131034141;
+			
+			// aapt resource value: 0x7f05001b
+			public const int symptomButton = 2131034139;
+			
+			// aapt resource value: 0x7f05001e
+			public const int symptomDescription = 2131034142;
+			
+			// aapt resource value: 0x7f05001f
+			public const int symptomManagerAddSymptom = 2131034143;
+			
+			// aapt resource value: 0x7f050003
+			public const int textView1 = 2131034115;
+			
+			// aapt resource value: 0x7f050015
+			public const int textView2 = 2131034133;
+			
+			// aapt resource value: 0x7f050014
+			public const int textView3 = 2131034132;
+			
+			// aapt resource value: 0x7f05000a
+			public const int timeText = 2131034122;
 			
 			static Id()
 			{
@@ -149,6 +185,9 @@ namespace Epilepsy
 			
 			// aapt resource value: 0x7f030003
 			public const int SeizureEventView = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int SymptomManager = 2130903044;
 			
 			static Layout()
 			{

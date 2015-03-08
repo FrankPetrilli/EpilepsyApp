@@ -1,111 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="25px"
-    android:minHeight="25px">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    android:minHeight="25px"
+    android:id="@+id/linearLayout3">
+    <ScrollView
         android:minWidth="25px"
         android:minHeight="25px"
-        android:id="@+id/linearLayout3">
-        <TextView
-            android:text="Intensity"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView1"
-            android:paddingLeft="5dp" />
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/scrollView1">
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:minWidth="25px"
             android:minHeight="25px"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linearLayout1">
+            android:layout_height="match_parent"
+            android:id="@+id/linearInScroll">
             <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:id="@+id/intensityNumber"
-                android:layout_marginLeft="15dp" />
-            <SeekBar
-                android:id="@+id/seekBar1"
-                android:indeterminate="false"
-                android:max="10"
+                android:text="Intensity"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:paddingLeft="5dp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout1">
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:id="@+id/intensityNumber"
+                    android:layout_marginLeft="15dp" />
+                <SeekBar
+                    android:id="@+id/seekBar1"
+                    android:indeterminate="false"
+                    android:max="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateLayout">
+                <EditText
+                    android:inputType="date"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/dateText"
+                    android:hint="Date"
+                    android:editable="false"
+                    android:textIsSelectable="false" />
+                <Button
+                    android:text="Pick"
+                    android:id="@+id/pickDateButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateLayout">
+                <EditText
+                    android:inputType="time"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timeText"
+                    android:hint="Time"
+                    android:editable="false"
+                    android:textIsSelectable="false" />
+                <Button
+                    android:text="Pick"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pickTimeButton" />
+            </LinearLayout>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationText"
+                android:hint="Location" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/descriptionBox"
+                android:hint="Description"
+                android:gravity="top" />
+            <CheckBox
+                android:text="Immediate Trigger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox1" />
+            <CheckBox
+                android:text="Woke up feeling &quot;fuzzy&quot;"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox2" />
+            <CheckBox
+                android:text="Felt an aura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox3" />
+            <CheckBox
+                android:text="Menstruating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox4" />
+            <CheckBox
+                android:text="Medication taken today"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox5" />
+            <Button
+                android:text="Add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_add" />
         </LinearLayout>
-        <EditText
-            android:inputType="date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dateText"
-            android:hint="Date"
-            android:editable="false"
-            android:textIsSelectable="false" />
-        <EditText
-            android:inputType="time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/timeText"
-            android:hint="Time"
-            android:editable="false"
-            android:textIsSelectable="false" />
-        <Button
-            android:text="Pick Date"
-            android:id="@+id/pickDateButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
-            android:text="Pick Time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/pickTimeButton" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/locationText"
-            android:hint="Location" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/descriptionBox"
-            android:hint="Description"
-            android:minLines="3"
-            android:gravity="top" />
-        <CheckBox
-            android:text="Immediate Trigger"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox1" />
-        <CheckBox
-            android:text="Woke up feeling &quot;fuzzy&quot;"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox2" />
-        <CheckBox
-            android:text="Felt an aura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox3" />
-        <CheckBox
-            android:text="Menstruating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox4" />
-        <CheckBox
-            android:text="Medication taken today"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox5" />
-        <Button
-            android:text="Add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/event_add" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+    <TextView
+        android:text="scroll above &amp; below | long-tap to remove"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:gravity="center" />
+    <TextView
+        android:text="Available Symptoms:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:id="@+id/availableSymptomsAdd" />
+    <TextView
+        android:text="Noted Symptoms:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:id="@+id/textView2" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/notedSymptoms" />
+</LinearLayout>

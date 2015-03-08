@@ -16,7 +16,8 @@ namespace Epilepsy
 	[Activity (Label = "Event View")]			
 	public class SeizureEventView : Activity
 	{
-		SeizureEvent my_event;
+		private SeizureEvent my_event;
+		private DataManager manager;
 
 		private EditText date_text;
 		private EditText time_text;
@@ -47,6 +48,8 @@ namespace Epilepsy
 			CheckBox meds_taken = FindViewById<CheckBox> (Resource.Id.checkBox5);
 			// Start loading our object.
 			my_event = SharedObjects.my_event;
+			// Get the database
+			manager = SharedObjects.manager;
 			// Date & Time
 			date = my_event.date;
 			date_text.Text = date.ToString ("D");
@@ -65,6 +68,14 @@ namespace Epilepsy
 			aura_felt.Checked = my_event.aura_felt;
 			menstruation.Checked = my_event.menstruation;
 			meds_taken.Checked = my_event.meds_taken;
+
+			// Symptom list
+
+			ListView symptom_list = FindViewById<ListView> (Resource.Id.notedSymptomView);
+			foreach (Symptom s in manager.GetSymptomOccurences(my_event)) {
+				System.Diagnostics.Debug.WriteLine(s.ToString());
+			}
+			symptom_list.Adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, manager.GetSymptomOccurences (my_event));
 			Toast.MakeText(this, "Event loaded", ToastLength.Long);
 		}
 	}

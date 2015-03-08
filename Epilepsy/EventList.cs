@@ -19,6 +19,7 @@ namespace Epilepsy
 		private DataManager manager;
 		private ArrayAdapter adapter;
 		IList<SeizureEvent> list;
+		ListView my_events;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -27,8 +28,13 @@ namespace Epilepsy
 			//manager = new DataManager ();
 			manager = SharedObjects.manager;
 			UpdateFromDB ();
-			ListView my_events = FindViewById<ListView> (Resource.Id.my_events);
-			// Check if empty
+			my_events = FindViewById<ListView> (Resource.Id.my_events);
+			UpdateList ();
+
+		}
+
+		void UpdateList()
+		{
 			if (list.Count == 0) {
 				IList<String> empty_list = new List<String> ();
 				empty_list.Add ("No items");
@@ -41,7 +47,7 @@ namespace Epilepsy
 			}
 			// Regardless, let's connect the list to the adapter.
 			my_events.Adapter = this.adapter;
-
+			adapter.NotifyDataSetChanged ();
 		}
 
 		void UpdateFromDB() 
@@ -50,19 +56,25 @@ namespace Epilepsy
 		}
 		void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
-			//Toast.MakeText (this, list[e.Position].ToString(), ToastLength.Long);
 			var view_activity = new Intent(this, typeof(SeizureEventView));
 			SharedObjects.my_event = list [e.Position];
 			StartActivity (view_activity);
-			//System.Diagnostics.Debug.WriteLine (list [e.Position].ToString ());
 		}
 
 		void OnListItemLongClick(object sender, AdapterView.ItemLongClickEventArgs e)
 		{
-			manager.RemoveEvent (list [e.Position]);
-			UpdateFromDB ();
-			Toast.MakeText(this, "Removed event", ToastLength.Long);		
-			adapter.NotifyDataSetChanged ();
+			AlertDialog.Builder builder = new AlertDialog.Builder (this);
+			builder.SetTitle ("Delete event?");
+			builder.SetMessage ("Are you sure you want to delete this?");
+			builder.SetPositiveButton("OK", delegate {
+				// They confirmed...
+				manager.RemoveEvent (list [e.Position]);
+				UpdateFromDB ();
+				UpdateList ();
+			});
+			builder.SetNegativeButton("Cancel", delegate { return; });
+			var dialog = builder.Create();
+			dialog.Show ();		
 		}
 	}
 }

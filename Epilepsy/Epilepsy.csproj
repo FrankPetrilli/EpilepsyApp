@@ -60,6 +60,8 @@
     <Compile Include="AddEvent.cs" />
     <Compile Include="SeizureEventView.cs" />
     <Compile Include="SharedObjects.cs" />
+    <Compile Include="SymptomManager.cs" />
+    <Compile Include="SymptomOccurrence.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -77,6 +79,7 @@
     <AndroidResource Include="Resources\layout\EventList.axml" />
     <AndroidResource Include="Resources\layout\AddEvent.axml" />
     <AndroidResource Include="Resources\layout\SeizureEventView.axml" />
+    <AndroidResource Include="Resources\layout\SymptomManager.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>

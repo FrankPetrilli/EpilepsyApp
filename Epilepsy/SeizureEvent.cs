@@ -22,19 +22,23 @@ namespace Epilepsy
 		public bool aura_felt { get; set; }
 		public bool menstruation { get; set; }
 		public bool meds_taken { get; set; }
+		//public List<Symptom> symptoms { get; set; }
 
 		public SeizureEvent()
 		{
+			this.id = new Random ().Next (Int32.MaxValue);
 		}
 
 		public SeizureEvent(string description)
 		{
+			this.id = new Random ().Next (Int32.MaxValue);
 			this.location = null;
 			this.description = description;
 		}
 
 		public SeizureEvent (DateTime date, string location, int duration, int intensity, string description, bool immediate_trigger, bool woke_up_fuzzy, bool aura_felt, bool menstruation, bool meds_taken)
 		{
+			this.id = new Random ().Next (Int32.MaxValue);
 			this.date = date;
 			this.location = location;
 			this.duration = duration;

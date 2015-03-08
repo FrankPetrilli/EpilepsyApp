@@ -1,105 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:minWidth="25px"
-    android:minHeight="25px">
-    <LinearLayout
-        android:orientation="vertical"
+    android:layout_height="fill_parent">
+    <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="300dp"
         android:minWidth="25px"
-        android:minHeight="25px"
-        android:id="@+id/linearLayout3">
-        <TextView
-            android:text="Intensity"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView1"
-            android:paddingLeft="5dp" />
+        android:minHeight="25px">
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:minWidth="25px"
             android:minHeight="25px"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/linearLayout1">
+            android:id="@+id/linearLayout3">
             <TextView
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="0"
-                android:id="@+id/intensityNumber"
-                android:layout_marginLeft="15dp" />
-            <SeekBar
-                android:id="@+id/seekBar1"
-                android:indeterminate="false"
-                android:max="10"
+                android:text="Intensity"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clickable="false" />
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+                android:paddingLeft="5dp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout1">
+                <TextView
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="0"
+                    android:id="@+id/intensityNumber"
+                    android:layout_marginLeft="15dp" />
+                <SeekBar
+                    android:id="@+id/seekBar1"
+                    android:indeterminate="false"
+                    android:max="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="false" />
+            </LinearLayout>
+            <EditText
+                android:inputType="date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateText"
+                android:hint="Date"
+                android:textIsSelectable="false"
+                android:editable="false" />
+            <EditText
+                android:inputType="time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/timeText"
+                android:hint="Time"
+                android:editable="false"
+                android:textIsSelectable="false" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/locationText"
+                android:hint="Location"
+                android:editable="false"
+                android:textIsSelectable="true" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/descriptionBox"
+                android:hint="Description"
+                android:minLines="3"
+                android:gravity="top"
+                android:editable="false" />
+            <CheckBox
+                android:text="Immediate Trigger"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox1"
+                android:editable="false" />
+            <CheckBox
+                android:text="Woke up feeling &quot;fuzzy&quot;"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox2"
+                android:editable="false" />
+            <CheckBox
+                android:text="Felt an aura"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox3"
+                android:editable="false" />
+            <CheckBox
+                android:text="Menstruating"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox4"
+                android:editable="false" />
+            <CheckBox
+                android:text="Medication taken today"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/checkBox5"
+                android:editable="false" />
         </LinearLayout>
-        <EditText
-            android:inputType="date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/dateText"
-            android:hint="Date"
-            android:textIsSelectable="false"
-            android:editable="false" />
-        <EditText
-            android:inputType="time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/timeText"
-            android:hint="Time"
-            android:editable="false"
-            android:textIsSelectable="false" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/locationText"
-            android:hint="Location"
-            android:editable="false"
-            android:textIsSelectable="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/descriptionBox"
-            android:hint="Description"
-            android:minLines="3"
-            android:gravity="top"
-            android:editable="false" />
-        <CheckBox
-            android:text="Immediate Trigger"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox1"
-            android:editable="false" />
-        <CheckBox
-            android:text="Woke up feeling &quot;fuzzy&quot;"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox2"
-            android:editable="false" />
-        <CheckBox
-            android:text="Felt an aura"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox3"
-            android:editable="false" />
-        <CheckBox
-            android:text="Menstruating"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox4"
-            android:editable="false" />
-        <CheckBox
-            android:text="Medication taken today"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/checkBox5"
-            android:editable="false" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+    <TextView
+        android:text="scroll above &amp; below"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:gravity="center" />
+    <TextView
+        android:text="Noted Symptoms:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/notedSymptomView" />
+</LinearLayout>
