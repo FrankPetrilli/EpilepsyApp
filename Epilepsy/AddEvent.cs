@@ -28,25 +28,10 @@ namespace Epilepsy
 
 		private DataManager manager;
 
-		private IList<Symptom> my_symptoms;
-
-		private ArrayAdapter available_adapter;
-		private ListView available_symptoms;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			//manager = new DataManager ();
 			manager = SharedObjects.manager;
-
-
-
-			// DEBUG
-			foreach (Symptom s in manager.GetSymptoms()) {
-				System.Diagnostics.Debug.WriteLine (s);
-			}
-
-
-
 
 			// Hide keyboard:
 			Window.SetSoftInputMode (SoftInput.StateAlwaysHidden);
@@ -81,41 +66,25 @@ namespace Epilepsy
 			CheckBox meds_taken = FindViewById<CheckBox> (Resource.Id.checkBox5);
 
 			// Symptom list
-			my_symptoms = new List<Symptom> ();
+			LinearLayout available_symptoms = FindViewById<LinearLayout> (Resource.Id.availableSymptomsAdd);
+			List<Symptom> symptom_list = manager.GetSymptoms ();
 
-			available_symptoms = FindViewById<ListView> (Resource.Id.availableSymptomsAdd);
-			ListView noted_symptoms = FindViewById<ListView> (Resource.Id.notedSymptoms);
+			ArrayAdapter available_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItemMultipleChoice, (IList<Symptom>)symptom_list);
+			Dictionary<int, bool> checked_map = new Dictionary<int, bool> ();
+			for (int i = 0; i < available_adapter.Count; i++) {
+				// Fix issue with i getting updated. -.-
+				int index = i;
+				checked_map.Add (index, false); // Add the empty checkbox into the map.
+				CheckBox new_box = new CheckBox (ApplicationContext); // Make a new checkbox.
+				new_box.Text = symptom_list [index].ToString (); // Set its text.
 
-			ArrayAdapter noted_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, my_symptoms);
-			noted_symptoms.Adapter = noted_adapter;
-
-			available_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, (IList<Symptom>)manager.GetSymptoms ());
-			available_symptoms.Adapter = available_adapter;
-
-			available_symptoms.ItemClick += delegate(object sender, AdapterView.ItemClickEventArgs e) {
-				my_symptoms.Add(manager.GetSymptoms()[e.Position]);
-				noted_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, my_symptoms);
-				noted_symptoms.Adapter = noted_adapter;
-				noted_adapter.NotifyDataSetChanged();
-			};
-
-			noted_symptoms.ItemLongClick += delegate(object sender, AdapterView.ItemLongClickEventArgs e) {
-				AlertDialog.Builder builder = new AlertDialog.Builder (this);
-				builder.SetTitle ("Delete observed symptom?");
-				builder.SetMessage ("Are you sure you want to delete this?");
-				builder.SetPositiveButton("OK", delegate {
-					// They confirmed...
-					my_symptoms.Remove(my_symptoms[e.Position]);
-					noted_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, my_symptoms);
-					noted_symptoms.Adapter = noted_adapter;
-					noted_adapter.NotifyDataSetChanged();
-				});
-				builder.SetNegativeButton("Cancel", delegate { return; });
-				var dialog = builder.Create();
-				dialog.Show ();
-			};
-
-
+				new_box.Click += delegate(object sender, EventArgs e) { // Set up what happens when it's checked.
+					bool previous = checked_map[index]; // Get previous entry
+					checked_map.Remove(index); // Kill it.
+					checked_map.Add (index, !previous); // Add back with it reversed.
+				};
+				available_symptoms.AddView (new_box);
+			}
 
 			pick_date.Click += delegate {
 				ShowDialog (DATE_DIALOG_ID);
@@ -151,7 +120,9 @@ namespace Epilepsy
 				manager.AddEvent(new_event);
 
 				//int row = manager.GetID(new_event); This would get the id from the DB.
-				foreach (Symptom symptom in my_symptoms)
+				var checked_symptoms = checked_map.Where(v => v.Value == true).Select(v => symptom_list[v.Key]);
+
+				foreach (Symptom symptom in checked_symptoms)
 				{
 					manager.AddSymptomOccurrence(new SymptomOccurrence(symptom.id, new_event.id));
 				}

@@ -3,7 +3,7 @@ using SQLite;
 
 namespace Epilepsy
 {
-	public class Symptom
+	public class Symptom : IEquatable<Symptom>
 	{
 		[PrimaryKey, AutoIncrement]
 		public int id { get; set; }
@@ -26,6 +26,16 @@ namespace Epilepsy
 		{
 			//return short_name + ": " + description;
 			return short_name;
+		}
+
+		public bool Equals (Symptom other)
+		{
+			return this.id == other.id;
+		}
+
+		public override int GetHashCode ()
+		{
+			return base.GetHashCode ();
 		}
 	}
 }

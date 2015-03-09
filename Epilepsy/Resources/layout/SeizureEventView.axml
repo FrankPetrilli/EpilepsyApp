@@ -5,7 +5,7 @@
     android:layout_height="fill_parent">
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="fill_parent"
         android:minWidth="25px"
         android:minHeight="25px">
         <LinearLayout
@@ -105,25 +105,20 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/checkBox5"
                 android:editable="false" />
+            <TextView
+                android:text="Symptoms:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/availableSymptomsView" />
         </LinearLayout>
     </ScrollView>
-    <TextView
-        android:text="scroll above &amp; below"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:gravity="center" />
-    <TextView
-        android:text="Noted Symptoms:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/notedSymptomView" />
 </LinearLayout>

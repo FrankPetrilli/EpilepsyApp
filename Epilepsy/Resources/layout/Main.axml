@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView1" />
     <TextView
-        android:text="Alpha version, release 1"
+        android:text="Alpha version, release 2"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

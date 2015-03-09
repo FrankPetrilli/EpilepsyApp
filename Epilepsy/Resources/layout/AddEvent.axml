@@ -10,7 +10,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:id="@+id/scrollView1">
         <LinearLayout
             android:orientation="vertical"
@@ -125,6 +125,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/checkBox5" />
+            <TextView
+                android:text="Symptoms:"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/availableSymptomsAdd" />
             <Button
                 android:text="Add"
                 android:layout_width="match_parent"
@@ -132,35 +146,4 @@
                 android:id="@+id/event_add" />
         </LinearLayout>
     </ScrollView>
-    <TextView
-        android:text="scroll above &amp; below | long-tap to remove"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:gravity="center" />
-    <TextView
-        android:text="Available Symptoms:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:id="@+id/availableSymptomsAdd" />
-    <TextView
-        android:text="Noted Symptoms:"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:id="@+id/textView2" />
-    <ListView
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/notedSymptoms" />
 </LinearLayout>

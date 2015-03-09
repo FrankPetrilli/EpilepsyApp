@@ -70,12 +70,30 @@ namespace Epilepsy
 			meds_taken.Checked = my_event.meds_taken;
 
 			// Symptom list
+			LinearLayout available_symptoms = FindViewById<LinearLayout> (Resource.Id.availableSymptomsView);
+			List<Symptom> observed_symptom_list = manager.GetSymptomOccurences (my_event);
+			System.Diagnostics.Debug.WriteLine ("Observed symptom list is: " + observed_symptom_list.Count);
+			List<Symptom> symptom_list = manager.GetSymptoms ();
 
-			ListView symptom_list = FindViewById<ListView> (Resource.Id.notedSymptomView);
-			foreach (Symptom s in manager.GetSymptomOccurences(my_event)) {
-				System.Diagnostics.Debug.WriteLine(s.ToString());
+			ArrayAdapter available_adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItemMultipleChoice, (IList<Symptom>)symptom_list);
+			Dictionary<int, bool> checked_map = new Dictionary<int, bool> ();
+			for (int i = 0; i < available_adapter.Count; i++) {
+				// Fix issue with i getting updated. -.-
+				int index = i;
+				checked_map.Add (index, false); // Add the empty checkbox into the map.
+				CheckBox new_box = new CheckBox (ApplicationContext); // Make a new checkbox.
+				new_box.Text = symptom_list [index].ToString (); // Set its text.
+				if (observed_symptom_list.Contains (symptom_list [index])) {
+					new_box.Checked = true; // Set it checked if they marked it as observed.
+					System.Diagnostics.Debug.WriteLine ("Setting " + symptom_list [index].ToString () + " to true.");
+				}
+				new_box.Click += delegate(object sender, EventArgs e) { // Set up what happens when it's checked.
+					bool previous = checked_map[index]; // Get previous entry
+					checked_map.Remove(index); // Kill it.
+					checked_map.Add (index, !previous); // Add back with it reversed.
+				};
+				available_symptoms.AddView (new_box);
 			}
-			symptom_list.Adapter = new ArrayAdapter<Symptom> (this, Android.Resource.Layout.SimpleListItem1, manager.GetSymptomOccurences (my_event));
 			Toast.MakeText(this, "Event loaded", ToastLength.Long);
 		}
 	}

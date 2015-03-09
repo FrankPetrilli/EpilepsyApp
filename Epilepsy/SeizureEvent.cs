@@ -6,7 +6,7 @@ using Java.Interop;
 
 namespace Epilepsy
 {
-	public class SeizureEvent
+	public class SeizureEvent : IComparable<SeizureEvent>
 	{
 		[PrimaryKey, AutoIncrement]
 		public int id { get; set; }
@@ -58,6 +58,11 @@ namespace Epilepsy
 				return description;
 			}
 			return date.ToString("g") + " @ " + location + " : " + description;
+		}
+
+		public int CompareTo(SeizureEvent other)
+		{
+			return this.date.CompareTo (other.date);
 		}
 	}
 }

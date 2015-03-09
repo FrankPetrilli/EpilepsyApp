@@ -54,7 +54,25 @@ namespace Epilepsy
 		// SeizureEvents
 		public List<SeizureEvent> GetEvents()
 		{
-			return connection.Query<SeizureEvent> ("SELECT * FROM [SeizureEvent]"); 
+			//return connection.Query<SeizureEvent> ("SELECT * FROM [SeizureEvent]"); 
+			return GetEvents (0);
+		}
+
+		public List<SeizureEvent> GetEvents(int ordering)
+		{
+			// 0 is date.
+			switch (ordering) {
+			case 0:
+				return connection.Query<SeizureEvent> ("SELECT * FROM [SeizureEvent] ORDER BY date DESC"); 
+				/*var query = connection.Table<SeizureEvent> ().OrderByDescending (v => v.date);
+				List<SeizureEvent> result = new List<SeizureEvent> ();
+				foreach (SeizureEvent seizure in query) {
+					result.Add(seizure);
+				}
+				return result;*/
+			default:
+				return null;
+			}
 		}
 
 		public int GetID(SeizureEvent my_event)
